@@ -61,9 +61,12 @@ const BookingModal = ({ isOpen, onClose, refreshBookings, bookingData }) => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/bookings/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://restaurant-booking-system-backend.onrender.com/bookings/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         const error = await response.json(); // Parse error message if any
@@ -81,7 +84,7 @@ const BookingModal = ({ isOpen, onClose, refreshBookings, bookingData }) => {
   const fetchAvailableSlots = async (selectedDate) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/available-slots?date=${selectedDate}`
+        `https://restaurant-booking-system-backend.onrender.com/available-slots?date=${selectedDate}`
       );
       const data = await response.json();
 
@@ -127,8 +130,8 @@ const BookingModal = ({ isOpen, onClose, refreshBookings, bookingData }) => {
       };
 
       const url = bookingData
-        ? `http://localhost:5000/bookings/${bookingData._id}` // Update booking
-        : `http://localhost:5000/bookings`; // Create new booking
+        ? `https://restaurant-booking-system-backend.onrender.com/bookings/${bookingData._id}` // Update booking
+        : `https://restaurant-booking-system-backend.onrender.com/bookings`; // Create new booking
       const method = bookingData ? "PUT" : "POST";
 
       const response = await fetch(url, {

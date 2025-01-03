@@ -38,7 +38,9 @@ const BookingsTable = ({ refreshTrigger }) => {
     setError(null);
 
     try {
-      const { data } = await axios.get("http://localhost:5000/bookings");
+      const { data } = await axios.get(
+        "https://restaurant-booking-system-backend.onrender.com/bookings"
+      );
       const formattedBookings = data.map((booking) => ({
         ...booking,
         date: dayjs(booking.date, "YYYY-MM-DD").format("DD-MM-YYYY"), // Format date for display
@@ -56,8 +58,8 @@ const BookingsTable = ({ refreshTrigger }) => {
   const handleSubmit = async (formData) => {
     try {
       const url = formData._id
-        ? `http://localhost:5000/bookings/${formData._id}` // Update booking
-        : `http://localhost:5000/bookings`; // Create new booking
+        ? `https://restaurant-booking-system-backend.onrender.com/bookings/${formData._id}` // Update booking
+        : `https://restaurant-booking-system-backend.onrender.com/bookings`; // Create new booking
       const method = formData._id ? "PUT" : "POST";
 
       const payload = {
@@ -95,7 +97,9 @@ const BookingsTable = ({ refreshTrigger }) => {
   // Delete a booking
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/bookings/${id}`);
+      await axios.delete(
+        `https://restaurant-booking-system-backend.onrender.com/bookings/${id}`
+      );
       setBookings((prev) => prev.filter((booking) => booking._id !== id));
       setShowDeleteModal(false);
     } catch (err) {
